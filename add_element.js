@@ -83,38 +83,70 @@
     // a.innerHTML += ('<iframe id="' + frameid +
     // '" src="javascript:parent.accounts[1];" frameBorder="0" scrolling="no" width="100%"></iframe>');
     // document.body.append(a)
-    function initCSS() {
-        const ele= document.createElement('style');
-        ele.type = 'text/css';
-        ele.innerHTML = `
-.tl_page_wrap {
-max-width: 1200px !important;
+
+
+// ----------------------------------method - 1 ----------------------------------
+
+    // function initCSS() {
+    //     const ele= document.createElement('style');
+    //     ele.type = 'text/css';
+    //     ele.innerHTML = `
+    //         .tl_page_wrap {
+    //         max-width: 1200px !important;
+    //         }
+    //     `;
+    //     document.head.appendChild(ele);
+    // }
+    
+    // initCSS();
+
+    // window.addEventListener('load', function() {
+    //     window.accounts = [];
+    //     var imgs = document.getElementsByTagName("img");
+    //     var t = imgs.length;
+    //     for (var i = 0; i < t;i++){
+    //         var a = document.createElement("div");
+    //         a.class = "aaa"
+    //         var id_str = 'img' + i;
+    //         var url = imgs[0].src;
+    //         var frameid = 'frameimg' + Math.random();
+    //         window.accounts[i] = '<img id=\"' + id_str + '\" src=\'' + url + '?' + Math.random() +
+    //         '\' /><script>window.onload = function() { parent.document.getElementById(\'' +
+    //         frameid + '\').height = document.getElementById(\'' + id_str + '\').height+\'px\';parent.document.getElementById(\'' +
+    //         frameid + '\').width = document.getElementById(\'' + id_str + '\').width +\'px\'; }<' +
+    //         '/script>';
+    //         a.innerHTML += ('<iframe id="' + frameid +
+    //         '" src="javascript:parent.accounts['+ i + '];" frameBorder="0" scrolling="no" width="100%" position = "absolute" block = "none"></iframe>');
+    //         imgs[0].parentElement.append(a);
+    //         imgs[0].parentElement.removeChild(imgs[0])
+    //     }
+    // });
+    // Element.setAttribute(name, value);
+//-------------------------------------method 2-----------------------------------
+    window.addEventListener('load', function() {
+        window.accounts = [];
+        var imgs = document.getElementsByTagName("img");
+        var t = imgs.length;
+        for (var i = 0; i < t;i++){
+            var a = document.createElement("div");
+            a.class = "aaa"
+            var width = imgs[0].parentElement.offsetWidth;
+            var height = imgs[0].parentElement.offsetHeight;
+            var id_str = 'img' + i;
+            var url = imgs[0].src;
+            var frameid = 'frameimg' + Math.random();
+            window.accounts[i] = '<img id=\"' + id_str + '\" src=\'' + url + '?' + Math.random() +
+            '\' width=' + width + 'px><script>window.onload = function() { parent.document.getElementById(\''+
+            frameid + '\').height = document.getElementById(\'' + id_str + '\').height+\'px\';parent.document.getElementById(\'' +
+            frameid + '\').width = document.getElementById(\'' + id_str + '\').width +\'px\'; }<' +
+            '/script>';
+            a.innerHTML += ('<iframe id="' + frameid +
+            '" src="javascript:parent.accounts['+ i + '];" frameBorder="0" scrolling="no" width="100%" position = "absolute" block = "none"></iframe>');
+            imgs[0].parentElement.append(a);
+            imgs[0].parentElement.removeChild(imgs[0])
+        }
+    });
+
+
 }
-`;
-        document.head.appendChild(ele);
-    }
-    initCSS();
-window.addEventListener('load', function() {
-    window.accounts = [];
-    var imgs = document.getElementsByTagName("img");
-    var t = imgs.length;
-    for (var i = 0; i < t;i++){
-        var a = document.createElement("div");
-        a.class = "aaa"
-        var id_str = 'img' + i;
-        var url = imgs[0].src;
-        var frameid = 'frameimg' + Math.random();
-        window.accounts[i] = '<img id=\"' + id_str + '\" src=\'' + url + '?' + Math.random() +
-        '\' /><script>window.onload = function() { parent.document.getElementById(\'' +
-        frameid + '\').height = document.getElementById(\'' + id_str + '\').height+\'px\';parent.document.getElementById(\'' +
-        frameid + '\').width = document.getElementById(\'' + id_str + '\').width +\'px\'; }<' +
-        '/script>';
-        a.innerHTML += ('<iframe id="' + frameid +
-        '" src="javascript:parent.accounts['+ i + '];" frameBorder="0" scrolling="no" width="100%" position = "absolute" block = "none"></iframe>');
-        imgs[0].parentElement.append(a);
-        imgs[0].parentElement.removeChild(imgs[0])
-    }
-});
-
-
-})();
+)();
