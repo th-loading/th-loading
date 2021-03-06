@@ -123,6 +123,9 @@
     // });
     // Element.setAttribute(name, value);
 //-------------------------------------method 2-----------------------------------
+    // iframe: parent -> parent's window; src -> parent object 
+    // css -> change max_width / change image size
+    // use iframe and random num
     window.addEventListener('load', function() {
         window.accounts = [];
         var imgs = document.getElementsByTagName("img");
@@ -139,14 +142,12 @@
             '\' width=' + width + 'px><script>window.onload = function() { parent.document.getElementById(\''+
             frameid + '\').height = document.getElementById(\'' + id_str + '\').height+\'px\';parent.document.getElementById(\'' +
             frameid + '\').width = document.getElementById(\'' + id_str + '\').width +\'px\'; }<' +
-            '/script>';
+            '/script>'
             a.innerHTML += ('<iframe id="' + frameid +
             '" src="javascript:parent.accounts['+ i + '];" frameBorder="0" scrolling="no" width="100%" position = "absolute" block = "none"></iframe>');
             imgs[0].parentElement.append(a);
             imgs[0].parentElement.removeChild(imgs[0])
         }
     });
-
-
 }
 )();
